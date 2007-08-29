@@ -47,9 +47,8 @@ Find some free Ogg Vorbis music here: http://www.vorbis.com/music/
 %patch5 -p1 -b .ogg123-play-stdin
 
 #ACLOCAL=aclocal-1.9 AUTOMAKE=automake-1.9 autoreconf --install --force
-aclocal-1.9
-autoconf
-automake-1.9
+touch config.rpath
+autoreconf --install --force
 
 %build
 %configure2_5x \
@@ -66,6 +65,9 @@ rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
 %find_lang %{name}
+
+# cleanup
+rm -rf %{buildroot}/%{_docdir}/%{name}-%{version}
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
@@ -85,5 +87,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/ogginfo*
 %{_mandir}/man1/vcut*
 %{_mandir}/man1/vorbiscomment*
-
-
