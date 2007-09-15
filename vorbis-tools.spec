@@ -3,8 +3,8 @@
 %define release %mkrel 5
 %define	theirversion %version
 
-# Define Mandrake Linux version we are building for
-%define mdkversion %(perl -pe '/(\\d+)\\.(\\d)\\.?(\\d)?/; $_="$1$2".($3||0)' /etc/mandrake-release)
+# Define Mandriva Linux version we are building for
+%define mdkversion %(perl -pe '/(\\d+)\\.(\\d)\\.?(\\d)?/; $_="$1$2".($3||0)' /etc/mandriva-release)
 
 Name:		%{name}
 Summary:	Several Ogg Vorbis Tools
