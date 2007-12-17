@@ -20,7 +20,6 @@ Patch: vorbis-tools-flac-1.1.3.patch
 Patch1: vorbis-tools-1.1.1-new-curl.patch
 Patch4:		vorbis-tools-1.1.1-next_on_SIGUSR1.patch
 Patch5:		vorbis-tools-1.0.1-ogg123-play-stdin.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 %if %{mdkversion} >= 920
 Requires:	libogg >= 1.0-1mdk libvorbis >= 1.0-1mdk
 %else
