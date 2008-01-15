@@ -1,6 +1,6 @@
 %define	name	vorbis-tools
 %define version 1.1.1
-%define release %mkrel 5
+%define release %mkrel 6
 %define	theirversion %version
 
 # Define Mandriva Linux version we are building for
@@ -18,6 +18,8 @@ Source:		http://downloads.xiph.org/releases/vorbis/%{name}-%{theirversion}.tar.b
 Patch: vorbis-tools-flac-1.1.3.patch
 #gw build with new curl
 Patch1: vorbis-tools-1.1.1-new-curl.patch
+#gw from Red Hat: fix charset conversion
+Patch2: vorbis-tools-1.1.1-conversion.patch
 Patch4:		vorbis-tools-1.1.1-next_on_SIGUSR1.patch
 Patch5:		vorbis-tools-1.0.1-ogg123-play-stdin.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
@@ -43,6 +45,7 @@ Find some free Ogg Vorbis music here: http://www.vorbis.com/music/
 %setup -q -n %{name}-%{theirversion}
 %patch -p1 -b .flac
 %patch1 -p1 -b .curl
+%patch2 -p1 -b .conversion
 %patch4 -p1 -b .next-on-USR1
 %patch5 -p1 -b .ogg123-play-stdin
 
