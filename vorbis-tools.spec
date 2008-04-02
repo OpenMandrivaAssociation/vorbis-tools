@@ -14,6 +14,8 @@ Group:		Sound
 License:	GPL
 URL:		http://www.xiph.org/
 Source:		http://downloads.xiph.org/releases/vorbis/%{name}-%{theirversion}.tar.gz
+# https://trac.xiph.org/changeset/14631
+Patch0:		vorbis-tools-1.2.0-flac-resampling-crash.patch
 Patch4:		vorbis-tools-1.1.1-next_on_SIGUSR1.patch
 Patch5:		vorbis-tools-1.0.1-ogg123-play-stdin.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
@@ -37,6 +39,7 @@ Find some free Ogg Vorbis music here: http://www.vorbis.com/music/
 
 %prep
 %setup -q -n %{name}-%{theirversion}
+%patch0 -p3 -b .flac-resampling-crash
 %patch4 -p1 -b .next-on-USR1
 %patch5 -p1 -b .ogg123-play-stdin
 
