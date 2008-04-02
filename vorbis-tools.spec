@@ -14,7 +14,6 @@ Group:		Sound
 License:	GPL
 URL:		http://www.xiph.org/
 Source:		http://downloads.xiph.org/releases/vorbis/%{name}-%{theirversion}.tar.gz
-# https://trac.xiph.org/changeset/14160
 Patch4:		vorbis-tools-1.1.1-next_on_SIGUSR1.patch
 Patch5:		vorbis-tools-1.0.1-ogg123-play-stdin.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
