@@ -1,6 +1,6 @@
 %define	name	vorbis-tools
 %define version 1.2.0
-%define release %mkrel 2
+%define release %mkrel 3
 %define	theirversion %version
 
 # Define Mandriva Linux version we are building for
@@ -18,6 +18,8 @@ Source:		http://downloads.xiph.org/releases/vorbis/%{name}-%{theirversion}.tar.g
 Patch0:		vorbis-tools-1.2.0-flac-resampling-crash.patch
 Patch4:		vorbis-tools-1.1.1-next_on_SIGUSR1.patch
 Patch5:		vorbis-tools-1.0.1-ogg123-play-stdin.patch
+# https://trac.xiph.org/attachment/ticket/1347/vorbis-tools-1.2.0-sec.patch
+Patch6:     vorbis-tools-1.2.0-sec.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 %if %{mdkversion} >= 920
 Requires:	libogg >= 1.0-1mdk libvorbis >= 1.0-1mdk
@@ -42,6 +44,7 @@ Find some free Ogg Vorbis music here: http://www.vorbis.com/music/
 %patch0 -p3 -b .flac-resampling-crash
 %patch4 -p1 -b .next-on-USR1
 %patch5 -p1 -b .ogg123-play-stdin
+%patch6 -p1 
 
 #ACLOCAL=aclocal-1.9 AUTOMAKE=automake-1.9 autoreconf --install --force
 touch config.rpath
