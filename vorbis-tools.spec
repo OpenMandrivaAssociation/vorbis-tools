@@ -1,6 +1,6 @@
 %define	name	vorbis-tools
 %define version 1.2.0
-%define release %mkrel 4
+%define release %mkrel 5
 %define	theirversion %version
 
 # Define Mandriva Linux version we are building for
