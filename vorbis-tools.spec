@@ -23,6 +23,7 @@ Patch6:     vorbis-tools-1.2.0-sec.patch
 # https://trac.xiph.org/ticket/1357
 Patch7:		dont-decode-after-pipe-closes.patch
 Patch8:		stop-eating-my-cpu.patch
+Patch9:		vorbis-tools-1.2.0-fix-str-fmt.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 %if %{mdkversion} >= 920
 Requires:	libogg >= 1.0-1mdk libvorbis >= 1.0-1mdk
@@ -50,6 +51,7 @@ Find some free Ogg Vorbis music here: http://www.vorbis.com/music/
 %patch6 -p1 
 %patch7 -p0 -b .pipe-close
 %patch8 -p0 -b .stop-eating-cpu
+%patch9 -p0
 
 #ACLOCAL=aclocal-1.9 AUTOMAKE=automake-1.9 autoreconf --install --force
 touch config.rpath
