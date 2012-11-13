@@ -1,0 +1,38 @@
+--- vorbis-tools-1.2.0/ogg123/file_transport.c.ogg123-play-stdin	2008-03-03 06:37:26.000000000 +0100
++++ vorbis-tools-1.2.0/ogg123/file_transport.c	2009-03-07 15:08:38.000000000 +0100
+@@ -93,6 +93,11 @@
+ 
+   if (!private->seekable) return 0;
+ 
++/* XXX HACK special-case stdin */
++  if (private->fp == stdin)
++    return 0;
++/* XXX */
++
+   /* Record where we are */
+   start = ftell(fp);
+ 
+@@ -129,6 +134,11 @@
+ 
+   if (!private->seekable) return -1;
+ 
++/* XXX HACK special-case stdin */
++  if (private->fp == stdin)
++    return -1;
++/* XXX */
++
+   return fseek(fp, offset, whence);  
+ }
+ 
+@@ -146,6 +156,11 @@
+   file_private_t *private = source->private;
+   FILE *fp = private->fp;
+ 
++/* XXX HACK special-case stdin */
++  if (private->fp == stdin)
++    return 0;
++/* XXX */
++
+   if (!private->seekable) return -1;
+ 
+   return ftell(fp);

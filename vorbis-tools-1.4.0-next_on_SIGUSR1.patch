@@ -1,0 +1,22 @@
+--- vorbis-tools-1.4.0/ogg123/ogg123.c.next-on-USR1	2008-03-03 06:37:26.000000000 +0100
++++ vorbis-tools-1.4.0/ogg123/ogg123.c	2009-03-07 15:04:06.000000000 +0100
+@@ -139,6 +139,11 @@
+ 
+   case SIGCONT:
+     break;  /* Don't need to do anything special to resume */
++
++  case SIGUSR1:
++	  sig_request.skipfile = 1;
++	  break;
++
+   }
+ }
+ 
+@@ -468,6 +473,7 @@
+   signal (SIGTSTP, signal_handler);
+   signal (SIGCONT, signal_handler);
+   signal (SIGTERM, signal_handler);
++  signal (SIGUSR1, signal_handler);
+ 
+   if (options.remote) {
+     /* run the mainloop for the remote interface */
