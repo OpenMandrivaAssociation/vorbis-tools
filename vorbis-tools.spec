@@ -13,7 +13,8 @@ Release:	%{release}
 Group:		Sound
 License:	GPL
 URL:		http://www.xiph.org/
-Source:		http://downloads.xiph.org/releases/vorbis/%{name}-%{theirversion}.tar.gz
+Source0:	http://downloads.xiph.org/releases/vorbis/%{name}-%{theirversion}.tar.gz
+Patch0:		vorbis-tools-automake-1.13.patch
 Patch4:		vorbis-tools-1.4.0-next_on_SIGUSR1.patch
 Patch5:		vorbis-tools-1.2.0-ogg123-play-stdin.patch
 Patch9:		vorbis-tools-1.2.0-fix-str-fmt.patch
@@ -35,6 +36,7 @@ Find some free Ogg Vorbis music here: http://www.vorbis.com/music/
 
 %prep
 %setup -q -n %{name}-%{theirversion}
+%patch0 -p1 -b .automake~
 %patch4 -p1 -b .next-on-USR1
 %patch5 -p1 -b .ogg123-play-stdin
 %patch9 -p0

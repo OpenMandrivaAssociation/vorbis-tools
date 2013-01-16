@@ -1,0 +1,23 @@
+--- vorbis-tools-1.4.0/configure.ac.bero	2013-01-16 03:38:37.040992448 +0100
++++ vorbis-tools-1.4.0/configure.ac	2013-01-16 03:38:49.668841142 +0100
+@@ -4,17 +4,17 @@ dnl ------------------------------------
+ dnl Initialization
+ dnl ------------------------------------------------
+ 
+-AC_INIT(oggenc/encode.c)
++AC_INIT([vorbis-tools],[1.4.0])
+ 
+ AC_CANONICAL_HOST
+ AC_CANONICAL_TARGET
+ 
+ AC_PREREQ(2.53)
+ 
+-AM_INIT_AUTOMAKE([vorbis-tools],[1.4.0])
++AM_INIT_AUTOMAKE
+ AM_MAINTAINER_MODE
+ 
+-AM_CONFIG_HEADER([config.h])
++AC_CONFIG_HEADERS([config.h])
+ 
+ AC_USE_SYSTEM_EXTENSIONS
+ 
