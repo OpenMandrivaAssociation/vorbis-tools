@@ -13,7 +13,6 @@ Patch0:		vorbis-tools-automake-1.13.patch
 Patch4:		vorbis-tools-1.4.0-next_on_SIGUSR1.patch
 Patch5:		vorbis-tools-1.2.0-ogg123-play-stdin.patch
 Patch9:		vorbis-tools-1.2.0-fix-str-fmt.patch
-BuildRequires:	texinfo
 # (gc) needed for AM_PATH_PROG_WITH_TEST
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ao)
