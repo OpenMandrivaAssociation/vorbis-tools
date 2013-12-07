@@ -4,7 +4,7 @@
 Summary:	Several Ogg Vorbis Tools
 Name:		vorbis-tools
 Version:	1.4.0
-Release:	7
+Release:	8
 Group:		Sound
 License:	GPLv2
 Url:		http://www.xiph.org/
