@@ -1,3 +1,8 @@
+%global optflags %{optflags} -O3
+
+# (tpg) enable PGO build
+%bcond_without pgo
+
 Summary:	Several Ogg Vorbis Tools
 Name:		vorbis-tools
 Version:	1.4.0
@@ -6,6 +11,8 @@ Group:		Sound
 License:	GPLv2
 Url:		http://www.xiph.org/
 Source0:	http://downloads.xiph.org/releases/vorbis/%{name}-%{version}.tar.gz
+# (tpg) https://www.audiocheck.net/testtones_highdefinitionaudio.php
+Source1:	https://www.audiocheck.net/download.php?filename=Audio/audiocheck.net_hdsweep_1Hz_44000Hz_-3dBFS_30s.wav
 Patch0:		vorbis-tools-automake-1.13.patch
 Patch4:		vorbis-tools-1.4.0-next_on_SIGUSR1.patch
 Patch5:		vorbis-tools-1.2.0-ogg123-play-stdin.patch
@@ -32,6 +39,32 @@ touch config.rpath
 autoreconf -fi
 
 %build
+%if %{with pgo}
+export LLVM_PROFILE_FILE=%{name}-%p.profile.d
+export LD_LIBRARY_PATH="$(pwd)"
+CFLAGS="%{optflags} -fprofile-instr-generate" \
+CXXFLAGS="%{optflags} -fprofile-instr-generate" \
+FFLAGS="$CFLAGS_PGO" \
+FCFLAGS="$CFLAGS_PGO" \
+LDFLAGS="%{ldflags} -fprofile-instr-generate" \
+%configure \
+	--enable-vcut
+
+%make_build
+cp %{SOURCE1} .
+    ./oggenc/oggenc -q 10 *.wav
+    ./oggdec/oggdec *.ogg
+    
+unset LD_LIBRARY_PATH
+unset LLVM_PROFILE_FILE
+llvm-profdata merge --output=%{name}.profile *.profile.d
+
+make clean
+
+CFLAGS="%{optflags} -fprofile-instr-use=$(realpath %{name}.profile)" \
+CXXFLAGS="%{optflags} -fprofile-instr-use=$(realpath %{name}.profile)" \
+LDFLAGS="%{ldflags} -fprofile-instr-use=$(realpath %{name}.profile)" \
+%endif
 %configure \
 	--enable-vcut
 
