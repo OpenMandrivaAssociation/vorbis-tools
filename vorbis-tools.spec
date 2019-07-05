@@ -1,10 +1,7 @@
-# Define Mandriva Linux version we are building for
-%define mdkversion %(perl -pe '/(\\d+)\\.(\\d)\\.?(\\d)?/; $_="$1$2".($3||0)' /etc/mandriva-release)
-
 Summary:	Several Ogg Vorbis Tools
 Name:		vorbis-tools
 Version:	1.4.0
-Release:	14
+Release:	15
 Group:		Sound
 License:	GPLv2
 Url:		http://www.xiph.org/
@@ -29,19 +26,19 @@ vorbiscomment (metadata editor) and vcut (cut tool).
 Find some free Ogg Vorbis music here: http://www.vorbis.com/music/
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
+
 touch config.rpath
 autoreconf -fi
 
 %build
-%configure2_5x \
+%configure \
 	--enable-vcut
 
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %find_lang %{name}
 
@@ -62,4 +59,3 @@ rm -rf %{buildroot}/%{_docdir}/%{name}-%{version}
 %{_mandir}/man1/ogginfo*
 %{_mandir}/man1/vcut*
 %{_mandir}/man1/vorbiscomment*
-
