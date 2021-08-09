@@ -5,18 +5,16 @@
 
 Summary:	Several Ogg Vorbis Tools
 Name:		vorbis-tools
-Version:	1.4.0
-Release:	15
+Version:	1.4.2
+Release:	1
 Group:		Sound
 License:	GPLv2
 Url:		http://www.xiph.org/
 Source0:	http://downloads.xiph.org/releases/vorbis/%{name}-%{version}.tar.gz
 # (tpg) https://www.audiocheck.net/testtones_highdefinitionaudio.php
 Source1:	https://www.audiocheck.net/download.php?filename=Audio/audiocheck.net_hdsweep_1Hz_44000Hz_-3dBFS_30s.wav
-Patch0:		vorbis-tools-automake-1.13.patch
 Patch4:		vorbis-tools-1.4.0-next_on_SIGUSR1.patch
 Patch5:		vorbis-tools-1.2.0-ogg123-play-stdin.patch
-Patch9:		vorbis-tools-1.2.0-fix-str-fmt.patch
 # (gc) needed for AM_PATH_PROG_WITH_TEST
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ao)
