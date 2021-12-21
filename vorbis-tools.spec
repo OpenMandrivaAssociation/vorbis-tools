@@ -6,7 +6,7 @@
 Summary:	Several Ogg Vorbis Tools
 Name:		vorbis-tools
 Version:	1.4.2
-Release:	1
+Release:	2
 Group:		Sound
 License:	GPLv2
 Url:		http://www.xiph.org/
@@ -21,7 +21,7 @@ BuildRequires:	pkgconfig(ao)
 BuildRequires:	pkgconfig(flac)
 BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(ogg)
-BuildRequires:  pkgconfig(speex)
+BuildRequires:	pkgconfig(speex)
 BuildRequires:	pkgconfig(vorbis)
 
 %description
@@ -38,13 +38,11 @@ autoreconf -fi
 
 %build
 %if %{with pgo}
-export LLVM_PROFILE_FILE=%{name}-%p.profile.d
 export LD_LIBRARY_PATH="$(pwd)"
-CFLAGS="%{optflags} -fprofile-instr-generate" \
-CXXFLAGS="%{optflags} -fprofile-instr-generate" \
-FFLAGS="$CFLAGS_PGO" \
-FCFLAGS="$CFLAGS_PGO" \
-LDFLAGS="%{ldflags} -fprofile-instr-generate" \
+
+CFLAGS="%{optflags} -fprofile-generate" \
+CXXFLAGS="%{optflags} -fprofile-generate" \
+LDFLAGS="%{build_ldflags} -fprofile-generate" \
 %configure \
 	--enable-vcut
 
@@ -52,16 +50,17 @@ LDFLAGS="%{ldflags} -fprofile-instr-generate" \
 cp %{SOURCE1} .
     ./oggenc/oggenc -q 10 *.wav
     ./oggdec/oggdec *.ogg
-    
+
 unset LD_LIBRARY_PATH
-unset LLVM_PROFILE_FILE
-llvm-profdata merge --output=%{name}.profile *.profile.d
+llvm-profdata merge --output=%{name}-llvm.profdata $(find . -name "*.profraw" -type f)
+PROFDATA="$(realpath %{name}-llvm.profdata)"
+rm -f *.profraw
 
 make clean
 
-CFLAGS="%{optflags} -fprofile-instr-use=$(realpath %{name}.profile)" \
-CXXFLAGS="%{optflags} -fprofile-instr-use=$(realpath %{name}.profile)" \
-LDFLAGS="%{ldflags} -fprofile-instr-use=$(realpath %{name}.profile)" \
+CFLAGS="%{optflags} -fprofile-use=$PROFDATA" \
+CXXFLAGS="%{optflags} -fprofile-use=$PROFDATA" \
+LDFLAGS="%{build_ldflags} -fprofile-use=$PROFDATA" \
 %endif
 %configure \
 	--enable-vcut
@@ -84,9 +83,9 @@ rm -rf %{buildroot}/%{_docdir}/%{name}-%{version}
 %{_bindir}/ogginfo
 %{_bindir}/vcut
 %{_bindir}/vorbiscomment
-%{_mandir}/man1/ogg123*
-%{_mandir}/man1/oggenc*
-%{_mandir}/man1/oggdec*
-%{_mandir}/man1/ogginfo*
-%{_mandir}/man1/vcut*
-%{_mandir}/man1/vorbiscomment*
+%doc %{_mandir}/man1/ogg123*
+%doc %{_mandir}/man1/oggenc*
+%doc %{_mandir}/man1/oggdec*
+%doc %{_mandir}/man1/ogginfo*
+%doc %{_mandir}/man1/vcut*
+%doc %{_mandir}/man1/vorbiscomment*
