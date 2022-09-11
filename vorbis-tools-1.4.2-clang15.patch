@@ -1,0 +1,11 @@
+diff -up vorbis-tools-1.4.2/ogginfo/codec_skeleton.c.omv~ vorbis-tools-1.4.2/ogginfo/codec_skeleton.c
+--- vorbis-tools-1.4.2/ogginfo/codec_skeleton.c.omv~	2022-09-11 20:48:38.184621504 +0200
++++ vorbis-tools-1.4.2/ogginfo/codec_skeleton.c	2022-09-11 20:48:46.702669276 +0200
+@@ -25,6 +25,7 @@
+ #include <ogg/ogg.h>
+ 
+ #include "i18n.h"
++#include "utf8.h"
+ 
+ #include "private.h"
+ 
