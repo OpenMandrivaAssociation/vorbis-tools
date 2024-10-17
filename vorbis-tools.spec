@@ -9,7 +9,7 @@ Version:	1.4.2
 Release:	4
 Group:		Sound
 License:	GPLv2
-Url:		http://www.xiph.org/
+Url:		https://www.xiph.org/
 Source0:	http://downloads.xiph.org/releases/vorbis/%{name}-%{version}.tar.gz
 # (tpg) https://www.audiocheck.net/testtones_highdefinitionaudio.php
 Source1:	https://www.audiocheck.net/download.php?filename=Audio/audiocheck.net_hdsweep_1Hz_44000Hz_-3dBFS_30s.wav
