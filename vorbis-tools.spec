@@ -5,12 +5,12 @@
 
 Summary:	Several Ogg Vorbis Tools
 Name:		vorbis-tools
-Version:	1.4.2
-Release:	5
+Version:	1.4.3
+Release:	1
 Group:		Sound
 License:	GPLv2
 Url:		https://www.xiph.org/
-Source0:	http://downloads.xiph.org/releases/vorbis/%{name}-%{version}.tar.gz
+Source0:	https://downloads.xiph.org/releases/vorbis/%{name}-%{version}.tar.gz
 # (tpg) https://www.audiocheck.net/testtones_highdefinitionaudio.php
 Source1:	https://www.audiocheck.net/download.php?filename=Audio/audiocheck.net_hdsweep_1Hz_44000Hz_-3dBFS_30s.wav
 Patch0:		vorbis-tools-1.4.2-clang15.patch
