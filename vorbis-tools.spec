@@ -17,6 +17,11 @@ Source1:	https://www.audiocheck.net/download.php?filename=Audio/audiocheck.net_h
 Patch4:		vorbis-tools-1.4.0-next_on_SIGUSR1.patch
 Patch5:		vorbis-tools-1.2.0-ogg123-play-stdin.patch
 # (gc) needed for AM_PATH_PROG_WITH_TEST
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(ao)
 BuildRequires:	pkgconfig(flac)
